@@ -3,6 +3,7 @@ import './App.css';
 import Context from './context/Context';
 import fetchPlanets from './helpers/FetchAPI';
 import FilterByName from './components/FilterByName';
+import Loading from './img/loading.gif';
 import Table from './components/Table';
 
 function App() {
@@ -24,10 +25,16 @@ function App() {
   return (
     <>
       <h1>Star Wars</h1>
-      <Context.Provider value={ { data, filterByName, searchPlanetByName } }>
-        <FilterByName />
-        <Table />
-      </Context.Provider>
+      {
+        !data
+          ? <img src={ Loading } alt="loading..." />
+          : (
+            <Context.Provider value={ { data, filterByName, searchPlanetByName } }>
+              <FilterByName />
+              <Table />
+            </Context.Provider>
+          )
+      }
     </>
   );
 }
