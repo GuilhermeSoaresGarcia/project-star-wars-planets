@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
+import Loading from '../img/loading.gif';
 
 function Table() {
   const data = useContext(Context);
 
   return (
-    !data ? 'loading'
+    !data ? <img src={ Loading } alt="loading..." />
       : (
         <table>
           <thead>
@@ -26,7 +27,6 @@ function Table() {
             </tr>
           </thead>
           <tbody>
-
             {data.map(({
               name,
               rotation_period: rotationPeriod,
