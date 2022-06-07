@@ -5,7 +5,7 @@ import fetchPlanets from './helpers/FetchAPI';
 import Table from './components/Table';
 
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     const requestApi = async () => {
