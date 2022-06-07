@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import Context from './context/Context';
 import fetchPlanets from './helpers/FetchAPI';
 import Table from './components/Table';
 
@@ -14,11 +15,12 @@ function App() {
     requestApi();
   }, []);
 
-  console.log(data);
   return (
     <>
       <h1>Star Wars</h1>
-      <Table />
+      <Context.Provider value={ data }>
+        <Table />
+      </Context.Provider>
     </>
   );
 }
