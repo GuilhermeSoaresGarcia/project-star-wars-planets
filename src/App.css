@@ -1,6 +1,6 @@
 body {
   background-color: rgba(50, 50, 50);
-  color: rgba(200, 200, 200);  
+  color: rgba(200, 200, 200);
 }
 
 table th {
@@ -9,7 +9,6 @@ table th {
 }
 
 .App {
-
   text-align: center;
 }
 
@@ -18,7 +17,7 @@ table th {
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion : no-preference) {
+@media ( prefers-reduced-motion : no-preference ) {
 
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
