@@ -2,7 +2,11 @@ import React, { useContext } from 'react';
 import Context from '../context/Context';
 
 function FilterByNumber() {
-  const { numericValuesParameters, getParameters } = useContext(Context);
+  const {
+    numericFilterParameters,
+    getParameters,
+    filterPlanetByNumbers,
+  } = useContext(Context);
 
   return (
     <div className="container-filter-by-numbers">
@@ -32,13 +36,14 @@ function FilterByNumber() {
         data-testid="value-filter"
         type="number"
         onChange={ getParameters }
-        value={ numericValuesParameters.value }
+        value={ numericFilterParameters.value }
         id="value"
       />
 
       <button
         data-testid="button-filter"
         type="button"
+        onClick={ filterPlanetByNumbers }
       >
         Filtrar
       </button>

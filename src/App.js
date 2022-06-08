@@ -10,17 +10,12 @@ import Table from './components/Table';
 function App() {
   const [data, setData] = useState(null);
   const [filterByName, setFilterByName] = useState({ name: '' });
-  const [numericValuesParameters, setNumericValuesParameters] = useState({
+  const [numericFilterParameters, setNumericFilterParameters] = useState({
     column: '',
     comparison: '',
     value: '0',
   });
-  const [filterByNumericValues, setFilterByNumericValues] = useState([
-    {
-      column: '',
-      comparison: '',
-      value: '0',
-    }]);
+  const [filterByNumericValues, setFilterByNumericValues] = useState([]);
 
   useEffect(() => {
     const requestApi = async () => {
@@ -36,12 +31,16 @@ function App() {
 
   const getParameters = ({ target }) => {
     const { id, value } = target;
-    setNumericValuesParameters(
+    setNumericFilterParameters(
       {
-        ...numericValuesParameters,
+        ...numericFilterParameters,
         [id]: value,
       },
     );
+  };
+
+  const filterPlanetByNumbers = () => {
+    setFilterByNumericValues([...filterByNumericValues, numericFilterParameters]);
   };
 
   return (
@@ -56,9 +55,10 @@ function App() {
                 data,
                 filterByName,
                 filterPlanetByName,
-                numericValuesParameters,
+                numericFilterParameters,
                 getParameters,
                 filterByNumericValues,
+                filterPlanetByNumbers,
               } }
             >
               <FilterByName />
