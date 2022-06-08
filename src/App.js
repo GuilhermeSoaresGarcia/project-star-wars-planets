@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Context from './context/Context';
+import Loading from './img/loading.gif';
 import fetchPlanets from './helpers/FetchAPI';
 import FilterByName from './components/FilterByName';
-import Loading from './img/loading.gif';
+import FilterByNumber from './components/FilterByNumbers';
 import Table from './components/Table';
 
 function App() {
   const [data, setData] = useState(null);
   const [filterByName, setFilterByName] = useState({ name: '' });
+  const [numericValuesParameters, setNumericValuesParameters] = useState({
+    column: '',
+    comparison: '',
+    value: '0',
+  });
   const [filterByNumericValues, setFilterByNumericValues] = useState([
     {
-      column: 'population',
-      comparison: 'maior que',
-      value: '100000',
+      column: '',
+      comparison: '',
+      value: '0',
     }]);
-
-  console.log(filterByNumericValues);
 
   useEffect(() => {
     const requestApi = async () => {
@@ -26,8 +30,18 @@ function App() {
     requestApi();
   }, []);
 
-  const searchPlanetByName = (e) => {
-    setFilterByName({ name: e.target.value });
+  const filterPlanetByName = ({ target }) => {
+    setFilterByName({ name: target.value });
+  };
+
+  const getParameters = ({ target }) => {
+    const { id, value } = target;
+    setNumericValuesParameters(
+      {
+        ...numericValuesParameters,
+        [id]: value,
+      },
+    );
   };
 
   return (
@@ -41,11 +55,14 @@ function App() {
               value={ {
                 data,
                 filterByName,
-                searchPlanetByName,
+                filterPlanetByName,
+                numericValuesParameters,
+                getParameters,
                 filterByNumericValues,
               } }
             >
               <FilterByName />
+              <FilterByNumber />
               <Table />
             </Context.Provider>
           )
