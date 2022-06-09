@@ -12,8 +12,8 @@ function App() {
   const [filteredData, setFilteredData] = useState([]);
   const [filterByName, setFilterByName] = useState({ name: '' });
   const [numericFilterParameters, setNumericFilterParameters] = useState({
-    column: '',
-    comparison: '',
+    column: 'population',
+    comparison: 'maior que',
     value: '0',
   });
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
@@ -27,38 +27,27 @@ function App() {
     requestApi();
   }, []);
 
-  useEffect(() => { // Lógica para a filtragem por nome
+  useEffect(() => { // Lógica para a filtragem pelas colunas com números
     setFilteredData(data.filter(({ name }) => name.includes(filterByName.name)));
   }, [data, filterByName]);
 
-  useEffect(() => {
+  useEffect(() => { // Lógica para a filtragem pelas colunas com números
     if (filterByNumericValues.length > 0) {
-      const bla = data.filter((planet) => filterByNumericValues.forEach((item) => {
+      let filterResult = data;
+      filterByNumericValues.forEach((item) => {
+        filterResult = filterResult.filter((planet) => {
           if (item.comparison === 'maior que') {
             return Number(planet[item.column]) > Number(item.value);
           }
-
           if (filterByNumericValues[0].comparison === 'menor que') {
             return Number(planet[item.column]) < Number(item.value);
           }
-
-          if (item.comparison === 'igual a') {
-            return Number(planet[item.column]) === Number(item.value);
-          }
-        }));
-      console.log(bla);
+          return Number(planet[item.column]) === Number(item.value);
+        });
+      });
+      setFilteredData(filterResult);
     }
-  }, [data, filteredData, filterByNumericValues]); // Lógica para a filtragem pelas colunas com números
-
-  //   if (filterByNumericValues[0].comparison === 'maior que') {
-  //     return Number(planet[filterByNumericValues[0].column]) > Number(filterByNumericValues[0].value);
-  //   }
-  //   if (filterByNumericValues[0].comparison === 'menor que') {
-  //     return Number(planet[filterByNumericValues[0].column]) < Number(filterByNumericValues[0].value);
-  //   }
-  //   if (filterByNumericValues[0].comparison === 'igual a') {
-  //     return Number(planet[filterByNumericValues[0].column]) === Number(filterByNumericValues[0].value);
-  //   }
+  }, [data, filterByNumericValues]);
 
   const filterPlanetByName = ({ target }) => {
     setFilterByName({ name: target.value });
@@ -83,10 +72,10 @@ function App() {
       <h1>Star Wars</h1>
       {
         data.length === 0
-          ? <img src={Loading} alt="loading..." />
+          ? <img src={ Loading } alt="loading..." />
           : (
             <Context.Provider
-              value={{
+              value={ {
                 filteredData,
                 filterByName,
                 filterPlanetByName,
@@ -94,7 +83,7 @@ function App() {
                 getParameters,
                 filterByNumericValues,
                 filterPlanetByNumbers,
-              }}
+              } }
             >
               <FilterByName />
               <FilterByNumber />
