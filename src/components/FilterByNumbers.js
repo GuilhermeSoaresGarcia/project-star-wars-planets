@@ -3,6 +3,7 @@ import Context from '../context/Context';
 
 function FilterByNumber() {
   const {
+    columnArray,
     numericFilterParameters,
     getParameters,
     filterPlanetByNumbers,
@@ -15,11 +16,7 @@ function FilterByNumber() {
         onChange={ getParameters }
         id="column"
       >
-        <option id="column">population</option>
-        <option id="column">orbital_period</option>
-        <option id="column">diameter</option>
-        <option id="column">rotation_period</option>
-        <option id="column">surface_water</option>
+        {columnArray.map((item) => <option key={ item } id="column">{item}</option>)}
       </select>
 
       <select

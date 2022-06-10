@@ -11,6 +11,8 @@ function App() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [filterByName, setFilterByName] = useState({ name: '' });
+  const [columnArray, setColumnArray] = useState(['population', 'orbital_period',
+    'diameter', 'rotation_period', 'surface_water']);
   const [numericFilterParameters, setNumericFilterParameters] = useState({
     column: 'population',
     comparison: 'maior que',
@@ -33,9 +35,9 @@ function App() {
 
   useEffect(() => { // Lógica para a filtragem pelas colunas com números
     if (filterByNumericValues.length > 0) {
-      let filterResult = data;
+      let filterResult = [];
       filterByNumericValues.forEach((item) => {
-        filterResult = filterResult.filter((planet) => {
+        filterResult = filteredData.filter((planet) => {
           if (item.comparison === 'maior que') {
             return Number(planet[item.column]) > Number(item.value);
           }
@@ -47,7 +49,20 @@ function App() {
       });
       setFilteredData(filterResult);
     }
-  }, [data, filterByNumericValues]);
+  }, [filterByNumericValues]);
+
+  useEffect(() => {
+    const copy = [...columnArray];
+    const parameterToRemove = filterByNumericValues.map((parameter) => parameter.column);
+    const indexOfFirstSelection = copy.indexOf(String(parameterToRemove));
+    if (indexOfFirstSelection >= 0) {
+      copy.splice(Number(indexOfFirstSelection), 1);
+    } else if (filterByNumericValues.length > 1) {
+      const newSelection = filterByNumericValues[filterByNumericValues.length - 1].column;
+      const getNewIndex = copy.indexOf(String(newSelection));
+      copy.splice(Number(getNewIndex), 1);
+    } setColumnArray(copy);
+  }, [filterByNumericValues]);
 
   const filterPlanetByName = ({ target }) => {
     setFilterByName({ name: target.value });
@@ -63,7 +78,7 @@ function App() {
     );
   };
 
-  const filterPlanetByNumbers = () => {
+  const filterPlanetByNumbers = async () => {
     setFilterByNumericValues([...filterByNumericValues, numericFilterParameters]);
   };
 
@@ -79,6 +94,7 @@ function App() {
                 filteredData,
                 filterByName,
                 filterPlanetByName,
+                columnArray,
                 numericFilterParameters,
                 getParameters,
                 filterByNumericValues,
