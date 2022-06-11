@@ -41,7 +41,7 @@ function App() {
           if (item.comparison === 'maior que') {
             return Number(planet[item.column]) > Number(item.value);
           }
-          if (filterByNumericValues[0].comparison === 'menor que') {
+          if (item.comparison === 'menor que') {
             return Number(planet[item.column]) < Number(item.value);
           }
           return Number(planet[item.column]) === Number(item.value);
@@ -51,7 +51,7 @@ function App() {
     }
   }, [filterByNumericValues]);
 
-  useEffect(() => {
+  useEffect(() => { // Lógica para remover o filtro da coluna
     const copy = [...columnArray];
     const parameterToRemove = filterByNumericValues.map((parameter) => parameter.column);
     const indexOfFirstSelection = copy.indexOf(String(parameterToRemove));
