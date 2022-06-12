@@ -5,6 +5,7 @@ import Loading from './img/loading.gif';
 import fetchPlanets from './helpers/FetchAPI';
 import FilterByName from './components/FilterByName';
 import FilterByNumber from './components/FilterByNumbers';
+import RemoveFilters from './components/RemoveFilters';
 import Table from './components/Table';
 
 function App() {
@@ -52,7 +53,7 @@ function App() {
   }, [filterByNumericValues]);
 
   useEffect(() => { // Lógica para remover o filtro da coluna
-    const copy = [...columnArray];
+    const copy = [...columnArray]; // Sem o spread, mesmo eu tendo feito uma cópia, as alterações acabam mutando o array original também
     const parameterToRemove = filterByNumericValues.map((parameter) => parameter.column);
     const indexOfFirstSelection = copy.indexOf(String(parameterToRemove));
     if (indexOfFirstSelection >= 0) {
@@ -103,6 +104,7 @@ function App() {
             >
               <FilterByName />
               <FilterByNumber />
+              <RemoveFilters />
               <Table />
             </Context.Provider>
           )
