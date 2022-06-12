@@ -79,9 +79,14 @@ function App() {
     );
   };
 
-  const filterPlanetByNumbers = async () => {
+  const filterPlanetByNumbers = () => {
     setFilterByNumericValues([...filterByNumericValues, numericFilterParameters]);
   };
+
+  const removeNumericFilter = () => {
+    
+    setFilterByNumericValues([...filterByNumericValues, numericFilterParameters]);
+  }
 
   return (
     <>
@@ -100,6 +105,7 @@ function App() {
                 getParameters,
                 filterByNumericValues,
                 filterPlanetByNumbers,
+                removeNumericFilter,
               } }
             >
               <FilterByName />
