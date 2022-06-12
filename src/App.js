@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './App.css';
 import Context from './context/Context';
 import Loading from './img/loading.gif';
@@ -12,8 +12,9 @@ function App() {
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [filterByName, setFilterByName] = useState({ name: '' });
-  const [columnArray, setColumnArray] = useState(['population', 'orbital_period',
-    'diameter', 'rotation_period', 'surface_water']);
+  const columnArrayInitialState = ['population', 'orbital_period',
+    'diameter', 'rotation_period', 'surface_water'];
+  const [columnArray, setColumnArray] = useState(columnArrayInitialState);
   const [numericFilterParameters, setNumericFilterParameters] = useState({
     column: 'population',
     comparison: 'maior que',
@@ -84,9 +85,14 @@ function App() {
   };
 
   const removeNumericFilter = () => {
-    
-    setFilterByNumericValues([...filterByNumericValues, numericFilterParameters]);
-  }
+    setFilterByNumericValues([...filterByNumericValues]);
+  };
+
+  const removeAllFilters = () => {
+    setFilterByNumericValues([]);
+    setColumnArray(columnArrayInitialState);
+    setFilteredData(data);
+  };
 
   return (
     <>
@@ -106,6 +112,7 @@ function App() {
                 filterByNumericValues,
                 filterPlanetByNumbers,
                 removeNumericFilter,
+                removeAllFilters,
               } }
             >
               <FilterByName />

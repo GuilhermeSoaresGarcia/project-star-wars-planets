@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import Context from '../context/Context';
 
 function RemoveFilters() {
-  const { filterByNumericValues, removeNumericFilter } = useContext(Context);
+  const { filterByNumericValues,
+    removeNumericFilter, removeAllFilters } = useContext(Context);
   console.log(filterByNumericValues);
   return (
     <>
@@ -34,7 +35,7 @@ function RemoveFilters() {
         <button
           data-testid="button-remove-filters"
           type="button"
-          onClick={ () => { console.log('remover todos os filtros'); } }
+          onClick={ removeAllFilters }
         >
           Remover todas filtragens
         </button>
