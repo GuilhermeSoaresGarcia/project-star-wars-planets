@@ -4,7 +4,6 @@ import Context from '../context/Context';
 function RemoveFilters() {
   const { filterByNumericValues,
     removeNumericFilter, removeAllFilters } = useContext(Context);
-  console.log(filterByNumericValues);
   return (
     <>
       <ol>
@@ -21,9 +20,8 @@ function RemoveFilters() {
               {' '}
               <button
                 type="button"
-                onClick={ () => {
-                  removeNumericFilter();
-                  console.log(filterByNumericValues);
+                onClick={ (event) => {
+                  removeNumericFilter(event);
                 } }
               >
                 Remover

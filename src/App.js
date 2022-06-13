@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Context from './context/Context';
 import Loading from './img/loading.gif';
@@ -31,7 +31,7 @@ function App() {
     requestApi();
   }, []);
 
-  useEffect(() => { // Lógica para a filtragem pelas colunas com números
+  useEffect(() => { // Lógica para a filtragem pelo nome
     setFilteredData(data.filter(({ name }) => name.includes(filterByName.name)));
   }, [data, filterByName]);
 
@@ -84,8 +84,15 @@ function App() {
     setFilterByNumericValues([...filterByNumericValues, numericFilterParameters]);
   };
 
-  const removeNumericFilter = () => {
-    setFilterByNumericValues([...filterByNumericValues]);
+  const removeNumericFilter = (event) => {
+    const copy = [...columnArray];
+    const parameter = event.target.parentElement.innerHTML.split(',')[0];
+    copy.push(parameter);
+    const removeFromFilterByNumericValues = filterByNumericValues
+      .filter((item) => item.column !== parameter);
+    setColumnArray(copy);
+    setFilterByNumericValues(removeFromFilterByNumericValues);
+    setFilteredData(data);
   };
 
   const removeAllFilters = () => {
