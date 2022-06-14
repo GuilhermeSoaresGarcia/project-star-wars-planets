@@ -6,6 +6,7 @@ import fetchPlanets from './helpers/FetchAPI';
 import FilterByName from './components/FilterByName';
 import FilterByNumber from './components/FilterByNumbers';
 import RemoveFilters from './components/RemoveFilters';
+import AlphabeticalOrder from './components/AlphabeticalOrder';
 import Table from './components/Table';
 
 function App() {
@@ -21,6 +22,12 @@ function App() {
     value: '0',
   });
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
+  const [orderBy, setOrderBy] = useState({
+    order: {
+      column: 'population',
+      sort: 'ASC',
+    },
+  });
 
   useEffect(() => {
     const requestApi = async () => {
@@ -101,6 +108,11 @@ function App() {
     setFilteredData(data);
   };
 
+  const orderParameters = ({ target }) => {
+    const { name, value } = target;
+    setOrderBy({ ...orderBy.order, [name]: value });
+  };
+
   return (
     <>
       <h1>Star Wars</h1>
@@ -120,11 +132,14 @@ function App() {
                 filterPlanetByNumbers,
                 removeNumericFilter,
                 removeAllFilters,
+                orderParameters,
+                orderBy,
               } }
             >
               <FilterByName />
               <FilterByNumber />
               <RemoveFilters />
+              <AlphabeticalOrder />
               <Table />
             </Context.Provider>
           )
