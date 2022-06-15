@@ -55,7 +55,6 @@ function AlphabeticalOrder() {
       >
         Ordenar
       </button>
-
     </>
   );
 }

@@ -8,6 +8,7 @@ import FilterByNumber from './components/FilterByNumbers';
 import RemoveFilters from './components/RemoveFilters';
 import AlphabeticalOrder from './components/AlphabeticalOrder';
 import Table from './components/Table';
+import SWGIF from './img/projectIntro.gif';
 
 function App() {
   const [data, setData] = useState([]);
@@ -37,7 +38,8 @@ function App() {
   }, []);
 
   useEffect(() => { // Lógica para a filtragem pelo nome
-    setFilteredData(data.filter(({ name }) => name.includes(filterByName.name)));
+    setFilteredData(data.filter(({ name }) => name.toLowerCase()
+      .includes(filterByName.name.toLowerCase())));
   }, [data, filterByName]);
 
   useEffect(() => { // Lógica para a filtragem pelas colunas com números
@@ -132,7 +134,9 @@ function App() {
 
   return (
     <>
-      <h1>Star Wars</h1>
+      <header>
+        <img src={ SWGIF } alt="Star Wars Logo" />
+      </header>
       {
         data.length === 0
           ? <img src={ Loading } alt="loading..." />
@@ -155,7 +159,9 @@ function App() {
               } }
             >
               <FilterByName />
-              <FilterByNumber />
+              <div className="container-filter-by-numbers">
+                <FilterByNumber />
+              </div>
               <RemoveFilters />
               <AlphabeticalOrder />
               <Table />

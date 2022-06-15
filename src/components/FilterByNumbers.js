@@ -10,7 +10,7 @@ function FilterByNumber() {
   } = useContext(Context);
 
   return (
-    <div className="container-filter-by-numbers">
+    <>
       <select
         data-testid="column-filter"
         onChange={ getParameters }
@@ -45,7 +45,7 @@ function FilterByNumber() {
       >
         Filtrar
       </button>
-    </div>
+    </>
   );
 }
 
