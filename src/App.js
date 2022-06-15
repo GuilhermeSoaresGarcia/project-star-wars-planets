@@ -30,8 +30,8 @@ function App() {
   useEffect(() => {
     const requestApi = async () => {
       const planetsRequest = await fetchPlanets(); // Talvez não valha a pena componentizar o fetch como fiz aqui, já que a quantidade de linhas pra fazer funcionar é quase igual a fazer o fetch direto no useEffect
-      setData(planetsRequest);
-      setFilteredData(planetsRequest);
+      setData(planetsRequest.sort((a, b) => a.name.localeCompare(b.name)));
+      setFilteredData(planetsRequest.sort((a, b) => a.name.localeCompare(b.name)));
     };
     requestApi();
   }, []);
@@ -114,9 +114,19 @@ function App() {
   const sortingOrder = () => {
     const copy = [...filteredData];
     if (order.sort === 'ASC') {
-      setFilteredData(copy.sort((a, b) => a[order.column] - b[order.column]));
-    } else if (order.sort === 'DESC') {
-      setFilteredData(copy.sort((b, a) => a[order.column] - b[order.column]));
+      setFilteredData(copy
+        .sort((a, b) => ( // Como o método "sort" utiliza os parâmetros "a" e "b" e faz um menos o outro para comparar, se o valor do parâmetro for "unknown", o ternário transforma-o em -1 (o que faz com que o "unknown" sempre perca a comparação, já que todos os outros números são maiores ou iguais a zero.)
+          a[order.column] === 'unknown' ? '-1' : a[order.column]
+        ) - (
+          b[order.column] === 'unknown' ? '-1' : b[order.column]
+        )));
+    } else {
+      setFilteredData(copy
+        .sort((a, b) => (
+          b[order.column] === 'unknown' ? '-1' : b[order.column]
+        ) - (
+          a[order.column] === 'unknown' ? '-1' : a[order.column]
+        )));
     }
   };
 
