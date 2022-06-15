@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Context from '../context/Context';
 
 function AlphabeticalOrder() {
-  const { orderParameters } = useContext(Context);
+  const { orderParameters, sortingOrder } = useContext(Context);
   const columnArray = ['population', 'orbital_period',
     'diameter', 'rotation_period', 'surface_water'];
 
@@ -32,6 +32,7 @@ function AlphabeticalOrder() {
           onChange={ orderParameters }
           id="asc"
           value="ASC"
+          defaultChecked
         />
         ASC
       </label>
@@ -50,7 +51,7 @@ function AlphabeticalOrder() {
       <button
         data-testid="column-sort-button"
         type="button"
-        onClick={ () => { console.log('ordenar'); } }
+        onClick={ sortingOrder }
       >
         Ordenar
       </button>

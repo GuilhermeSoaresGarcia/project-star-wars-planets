@@ -22,11 +22,9 @@ function App() {
     value: '0',
   });
   const [filterByNumericValues, setFilterByNumericValues] = useState([]);
-  const [orderBy, setOrderBy] = useState({
-    order: {
-      column: 'population',
-      sort: 'ASC',
-    },
+  const [order, setOrder] = useState({
+    column: 'population',
+    sort: 'ASC',
   });
 
   useEffect(() => {
@@ -110,7 +108,16 @@ function App() {
 
   const orderParameters = ({ target }) => {
     const { name, value } = target;
-    setOrderBy({ ...orderBy.order, [name]: value });
+    setOrder({ ...order, [name]: value });
+  };
+
+  const sortingOrder = () => {
+    const copy = [...filteredData];
+    if (order.sort === 'ASC') {
+      setFilteredData(copy.sort((a, b) => a[order.column] - b[order.column]));
+    } else if (order.sort === 'DESC') {
+      setFilteredData(copy.sort((b, a) => a[order.column] - b[order.column]));
+    }
   };
 
   return (
@@ -133,7 +140,8 @@ function App() {
                 removeNumericFilter,
                 removeAllFilters,
                 orderParameters,
-                orderBy,
+                order,
+                sortingOrder,
               } }
             >
               <FilterByName />
