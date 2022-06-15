@@ -31,8 +31,15 @@ function App() {
   useEffect(() => {
     const requestApi = async () => {
       const planetsRequest = await fetchPlanets(); // Talvez não valha a pena componentizar o fetch como fiz aqui, já que a quantidade de linhas pra fazer funcionar é quase igual a fazer o fetch direto no useEffect
-      setData(planetsRequest.sort((a, b) => a.name.localeCompare(b.name)));
-      setFilteredData(planetsRequest.sort((a, b) => a.name.localeCompare(b.name)));
+      const timeout = 0;
+      setTimeout(() => {
+        setData(planetsRequest
+          .sort((a, b) => a.name.localeCompare(b.name)));
+      }, timeout);
+      setTimeout(() => {
+        setFilteredData(planetsRequest
+          .sort((a, b) => a.name.localeCompare(b.name)));
+      }, timeout);
     };
     requestApi();
   }, []);
@@ -139,7 +146,11 @@ function App() {
       </header>
       {
         data.length === 0
-          ? <img src={ Loading } alt="loading..." />
+          ? (
+            <div className="loading">
+              <img src={ Loading } alt="loading..." />
+            </div>
+          )
           : (
             <Context.Provider
               value={ {
@@ -158,13 +169,23 @@ function App() {
                 sortingOrder,
               } }
             >
-              <FilterByName />
-              <div className="container-filter-by-numbers">
-                <FilterByNumber />
+              <section className="container-filters">
+                <div className="container-filter-by-name">
+                  <FilterByName />
+                </div>
+                <div className="container-filter-by-numbers">
+                  <FilterByNumber />
+                </div>
+                <div className="container-remove-filters">
+                  <RemoveFilters />
+                </div>
+                <div className="container-sort-order">
+                  <AlphabeticalOrder />
+                </div>
+              </section>
+              <div className="container-table">
+                <Table />
               </div>
-              <RemoveFilters />
-              <AlphabeticalOrder />
-              <Table />
             </Context.Provider>
           )
       }

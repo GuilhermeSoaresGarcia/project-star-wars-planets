@@ -9,6 +9,7 @@ function FilterByName() {
       type="text"
       onChange={ filterPlanetByName }
       value={ filterByName.name }
+      placeholder="Filter by name..."
     />
   );
 }

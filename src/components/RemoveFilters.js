@@ -28,16 +28,20 @@ function RemoveFilters() {
               </button>
             </li>))}
       </ol>
-
-      <div>
-        <button
-          data-testid="button-remove-filters"
-          type="button"
-          onClick={ removeAllFilters }
-        >
-          Remover todas filtragens
-        </button>
-      </div>
+      {
+        filterByNumericValues.length > 0
+        && (
+          <div>
+            <button
+              data-testid="button-remove-filters"
+              type="button"
+              onClick={ removeAllFilters }
+            >
+              Remover todas filtragens
+            </button>
+          </div>
+        )
+      }
     </>
   );
 }
