@@ -1,16 +1,26 @@
-# 🚧 README em construção 🚧
+# Star Wars Planet Search Project
 
-<!-- Olá, Tryber!
+# Contexto
+Este projeto propunha a utilização do Context API e hooks para o gerenciamento do estado global da aplicação.
 
-Esse é apenas um arquivo inicial para o README do seu projeto.
+> Fazer o fetching de uma API;
 
-É essencial que você preencha esse documento por conta própria, ok?
+> Utilização de context API e hooks (principalmente useState, useContext e useEffect) para gerenciar o estado global da aplicação;
 
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
+> Utilização de componentização para os filtros, tabela e inputs;
 
-⚠️ IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
+> Desenvolver filtros utilizando métodos e "high order functions" diversos do ES6;
 
--->
+## Técnologias usadas
+
+> Desenvolvido usando: React, Context API e hooks, JavaScript (ES6) e CSS para estilização.
+
+## Instalando dependências
+```
+npm install
+```
+
+## Executando aplicação
+```
+npm start
+```
