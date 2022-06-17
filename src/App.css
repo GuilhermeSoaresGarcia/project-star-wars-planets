@@ -1,5 +1,8 @@
 body {
+  background-attachment: fixed;
+  background-image: url('./img/background.gif');
   background-color: black;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
   color: rgba(200, 200, 200);
   text-align: center;
 }
@@ -17,11 +20,28 @@ body {
   margin: 0 auto;
 }
 
-
+table {
+  padding: 10px;
+}
 
 table th {
+  background-color: black;
   border: solid 1px white;
-  border-collapse: collapse;
+  border-collapse: collapse;  
+  height: 50px;
+}
+
+table tr:nth-child(odd) {
+  background-color: rgba(200, 200, 200, 0.1);  
+}
+
+table tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 1px 10px white;
+}
+
+table td {
+  min-width: 150px;
 }
 
 input {

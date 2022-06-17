@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Context from './context/Context';
-import Loading from './img/loading.gif';
+import Demo from './components/Demo';
 import fetchPlanets from './helpers/FetchAPI';
 import FilterByName from './components/FilterByName';
 import FilterByNumber from './components/FilterByNumbers';
@@ -31,7 +31,7 @@ function App() {
   useEffect(() => {
     const requestApi = async () => {
       const planetsRequest = await fetchPlanets(); // Talvez não valha a pena componentizar o fetch como fiz aqui, já que a quantidade de linhas pra fazer funcionar é quase igual a fazer o fetch direto no useEffect
-      const timeout = 0;
+      const timeout = 5000;
       setTimeout(() => {
         setData(planetsRequest
           .sort((a, b) => a.name.localeCompare(b.name)));
@@ -148,7 +148,8 @@ function App() {
         data.length === 0
           ? (
             <div className="loading">
-              <img src={ Loading } alt="loading..." />
+              {/* FONTE: https://codemyui.com/lightsaber-progress-bar/ */}
+              <Demo />
             </div>
           )
           : (

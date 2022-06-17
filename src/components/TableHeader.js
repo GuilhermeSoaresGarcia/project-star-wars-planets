@@ -4,6 +4,7 @@ function TableHeader() {
   return (
     <thead>
       <tr>
+        <th>Image</th>
         <th>Name</th>
         <th>Rotation Period</th>
         <th>Orbital Period</th>
@@ -14,9 +15,9 @@ function TableHeader() {
         <th>Surface Water</th>
         <th>Population</th>
         <th>Films</th>
-        <th>Created</th>
+        {/* <th>Created</th>
         <th>Edited</th>
-        <th>URL</th>
+        <th>URL</th> */}
       </tr>
     </thead>
   );
