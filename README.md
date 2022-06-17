@@ -11,7 +11,7 @@ Este projeto propunha a utilização do Context API e hooks para o gerenciamento
 
 > Desenvolver filtros utilizando métodos e "high order functions" diversos do ES6;
 
-## Técnologias usadas
+## Tecnologias usadas
 
 > Desenvolvido usando: React, Context API e hooks, JavaScript (ES6) e CSS para estilização.
 
