@@ -14,7 +14,7 @@ function TableHeader() {
         <th>Terrain</th>
         <th>Surface Water</th>
         <th>Population</th>
-        <th>Films</th>
+        {/* <th>Films</th> */}
         {/* <th>Created</th>
         <th>Edited</th>
         <th>URL</th> */}

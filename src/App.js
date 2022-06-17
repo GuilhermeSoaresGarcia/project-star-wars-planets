@@ -96,6 +96,7 @@ function App() {
 
   const filterPlanetByNumbers = () => {
     setFilterByNumericValues([...filterByNumericValues, numericFilterParameters]);
+    setNumericFilterParameters({ ...numericFilterParameters, value: 0 });
   };
 
   const removeNumericFilter = (event) => {

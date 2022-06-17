@@ -20,7 +20,7 @@ function Table() {
           terrain,
           surface_water: surfaceWater,
           population,
-          films
+          // films,
           // created,
           // edited,
           // url
@@ -42,7 +42,7 @@ function Table() {
             <td>{terrain}</td>
             <td>{surfaceWater}</td>
             <td>{population}</td>
-            <td>{films}</td>
+            {/* <td>{films}</td> */}
             {/* <td>{created}</td>
             <td>{edited}</td>
             <td>{url}</td> */}

@@ -2,48 +2,94 @@ body {
   background-attachment: fixed;
   background-image: url('./img/background.gif');
   background-color: black;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
   color: rgba(200, 200, 200);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   text-align: center;
 }
 
-.loading {
-  display: flex;
-  width: 100%;
+input,
+select,
+button {
+  border: none;
+  border-radius: 20px;
+  margin: 0 10px;
+  padding: 10px;
 }
 
-.loading img{
-  margin: 0 auto;
+button {
+  background-color: yellow;
+  cursor: pointer;
+  width: 100px;
+}
+
+button:hover {
+  font-weight: 900;
+  text-decoration: underline;
 }
 
 .container-filters {
+  padding-bottom: 100px;
+}
+
+.container-filter-by-name {
+  padding-bottom: 20px;
+}
+
+.container-filter-by-name input {
+  border: none;
+  padding: 10px;
+  width: 250px;
+}
+
+.container-filter-by-numbers input {
+  width: 150px;
+}
+
+.container-filter-by-numbers select {
+  width: 120px;
+}
+
+.container-filter-by-numbers button {
+  width: 100px;
+}
+
+.container-remove-filters ol {
   margin: 0 auto;
+  padding: 10px;
+}
+
+.container-remove-filters li {  
+  line-height: 50px;
+}
+
+.container-remove-filters button {
+  background-color: red;
+  color: white;
+  margin-bottom: 20px;
+  width: 150px;
 }
 
 table {
+  margin: 0 auto;
   padding: 10px;
 }
 
 table th {
   background-color: black;
   border: solid 1px white;
-  border-collapse: collapse;  
+  border-collapse: collapse;
   height: 50px;
 }
 
 table tr:nth-child(odd) {
-  background-color: rgba(200, 200, 200, 0.1);  
+  background-color: rgba(200, 200, 200, 0.1);
+  text-shadow: 3px 3px 3px black;
 }
 
 table tr:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.5);
-  text-shadow: 1px 1px 10px white;
 }
 
 table td {
   min-width: 150px;
-}
-
-input {
-  padding: 10px;
 }

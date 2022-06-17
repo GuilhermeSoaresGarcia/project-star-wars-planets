@@ -16,7 +16,8 @@ function FilterByNumber() {
         onChange={ getParameters }
         id="column"
       >
-        <option defaultValue> </option>
+        <option defaultValue>{'<Select by...>'}</option>
+        <option disabled>-----------</option>
         {columnArray.map((item) => <option key={ item } id="column">{item}</option>)}
       </select>
 
